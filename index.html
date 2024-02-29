@@ -4,9 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
     #container {
-      width: 50vw;
-      height: 50vw;
+      width: 70vmin; /* Viewportの小さい方に合わせる */
+      height: 70vmin;
       overflow: hidden;
       position: relative;
     }
@@ -23,18 +32,16 @@
 <body>
 
 <div id="container">
-  <img id="image" src="ADI.png" alt="Your Image">
+  <img id="image" src="your_image_path.jpg" alt="Your Image">
 </div>
 
 <script>
   window.addEventListener('deviceorientation', handleOrientation);
 
   function handleOrientation(event) {
-    // ピッチとロールの値を取得
-    const pitch = event.beta || 0; // ピッチ
-    const roll = event.gamma || 0; // ロール
+    const pitch = event.beta || 0;
+    const roll = event.gamma || 0;
 
-    // 画像を移動させる
     moveImage(pitch, roll);
   }
 
@@ -42,12 +49,12 @@
     const container = document.getElementById('container');
     const image = document.getElementById('image');
 
-    // ピッチとロールに基づいて画像の位置や回転を計算
-    const translateY = pitch * 2; // ピッチに応じて上下に移動
-    const rotateZ = roll * 1; // ロールに応じて回転
+    const translateY = pitch * 2;
+    const translateX = -roll * 0; // 逆向きに動かす
+    const rotateZ = roll * 1;
 
     // CSSで変換を適用
-    image.style.transform = `translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
+    image.style.transform = `translate(${translateX}px, ${translateY}px) rotateZ(${rotateZ}deg)`;
   }
 </script>
 
