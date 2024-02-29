@@ -14,7 +14,7 @@
     }
 
     #container {
-      width: 80vmin;
+      width: 80vmin; /* Viewportの小さい方に合わせる */
       height: 80vmin;
       overflow: hidden;
       position: relative;
@@ -23,7 +23,7 @@
     #image {
       width: 100%;
       height: 100%;
-      object-fit: none; /* 画像のアスペクト比を維持しない */
+      object-fit: cover;
       position: absolute;
       transition: transform 0.2s ease-in-out;
     }
@@ -32,7 +32,7 @@
 <body>
 
 <div id="container">
-  <img id="image" src="ADI.png" alt="ADI">
+  <img id="image" src="ADI.png" alt="Your Image">
 </div>
 
 <script>
@@ -49,8 +49,8 @@
     const container = document.getElementById('container');
     const image = document.getElementById('image');
 
-    const translateY = pitch * 2;
-    const translateX = -roll * 0;
+    const translateY = pitch * 5;
+    const translateX = -roll * 0; // 逆向きに動かす
     const rotateZ = roll * 1;
 
     // CSSで変換を適用
