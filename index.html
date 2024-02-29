@@ -25,6 +25,12 @@
       z-index: 2;
     }
 
+    #container2 {
+      width: 80vmin;
+      height: 80vmin;
+      z-index: 1; /* コンテナ2のz-indexを設定 */
+    }
+
     #image {
       width: 180%; /* 16:9で180%に拡大表示 */
       height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
@@ -34,12 +40,10 @@
       left: 50%;
       transform: translate(-50%, -50%); /* 画像を中央揃え */
       transition: transform 0.1s ease-in-out;
-/*       z-index: 2; */
     }
     #image2 {
       width: 100%;
       height: 100%;
-      z-index: 1;
     }
 
     #orientationValues {
@@ -50,7 +54,9 @@
   </style>
 </head>
 <body>
-<img id="image2" src="ADI_2.1.png" alt="Your Image">
+<div id="container2">
+　<img id="image2" src="ADI_2.1.png" alt="Your Image">
+</div>
 <div id="container">
   <img id="image" src="ADI.png" alt="Your Image">
 </div>
