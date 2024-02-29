@@ -11,6 +11,7 @@
       justify-content: center;
       height: 100vh;
       overflow: hidden;
+      background-color: black; /* 背景色を黒に設定 */
     }
 
     #container {
@@ -18,14 +19,17 @@
       height: 70vmin;
       overflow: hidden;
       position: relative;
+      border-radius: 15px; /* 角を丸めて窓らしさを増す */
     }
 
     #image {
-      width: 100%;
-      height: 100%;
+      width: 150%; /* 16:9で120%に拡大表示 */
+      height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
       object-fit: cover;
-/*       clip-path: circle(50% at center); */
       position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* 画像を中央揃え */
       transition: transform 0.1s ease-in-out;
     }
   </style>
@@ -47,14 +51,13 @@
   }
 
   function moveImage(pitch, roll) {
-    const container = document.getElementById('container');
     const image = document.getElementById('image');
 
     const translateY = pitch * 5;
     const rotateZ = roll * -1;
 
     // CSSで変換を適用
-    image.style.transform = `translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
+    image.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
   }
 </script>
 
