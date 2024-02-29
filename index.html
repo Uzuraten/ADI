@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +14,9 @@
     }
 
     #container {
-      width: 80vmin; /* Viewportの小さい方に合わせる */
-      height: 80vmin;
-      overflow: hidden;
+      width: 70vmin;
+      height: 70vmin;
+      //overflow: hidden;
       position: relative;
     }
 
@@ -24,6 +24,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      //clip-path: circle(50% at center);
       position: absolute;
       transition: transform 0.2s ease-in-out;
     }
@@ -50,11 +51,10 @@
     const image = document.getElementById('image');
 
     const translateY = pitch * 5;
-    const translateX = -roll * 0; // 逆向きに動かす
-    const rotateZ = roll * 1;
+    const rotateZ = roll * -1;
 
     // CSSで変換を適用
-    image.style.transform = `translate(${translateX}px, ${translateY}px) rotateZ(${rotateZ}deg)`;
+    image.style.transform = `translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
   }
 </script>
 
