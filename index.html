@@ -22,6 +22,7 @@
       overflow: hidden;
       position: relative;
       border-radius: 15px; /* 角を丸めて窓らしさを増す */
+      z-index: 2;
     }
 
     #image {
@@ -33,7 +34,7 @@
       left: 50%;
       transform: translate(-50%, -50%); /* 画像を中央揃え */
       transition: transform 0.1s ease-in-out;
-      z-index: 2;
+/*       z-index: 2; */
     }
     #image2 {
       width: 100%;
@@ -49,9 +50,8 @@
   </style>
 </head>
 <body>
-
+<img id="image2" src="ADI_2.1.png" alt="Your Image">
 <div id="container">
-  <img id="image2" src="ADI_2.1.png" alt="Your Image">
   <img id="image" src="ADI.png" alt="Your Image">
 </div>
 
