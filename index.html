@@ -29,7 +29,7 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%); /* 画像を中央揃え */
+      transform: translate(-50%, -50%) translateY(0) rotateZ(0); /* 画像を中央揃え */
       transition: transform 0.1s ease-in-out;
     }
 
@@ -50,17 +50,19 @@
 
 <div id="container">
   <img id="image" src="ADI.png" alt="Your Image">
-  <button id="adjustButton" onclick="resetPitch()">Reset Pitch</button>
+  <button id="adjustButton" onclick="adjustPitch()">Adjust Pitch</button>
 </div>
 
 <script>
+  let initialPitch = 0; // 初期のピッチ値を保存する変数
+
   window.addEventListener('deviceorientation', handleOrientation);
 
   function handleOrientation(event) {
     const pitch = event.beta || 0;
     const roll = event.gamma || 0;
 
-    moveImage(pitch, roll);
+    moveImage(pitch - initialPitch, roll);
   }
 
   function moveImage(pitch, roll) {
@@ -73,9 +75,10 @@
     image.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
   }
 
-  function resetPitch() {
+  function adjustPitch() {
     const image = document.getElementById('image');
-    image.style.transform = `translate(-50%, -50%)`;
+    initialPitch = (window.orientation === 0) ? 0 : 90;
+    image.style.transform = `translate(-50%, -50%) translateY(0) rotateZ(0)`;
   }
 </script>
 
