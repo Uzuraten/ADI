@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #container {
+      width: 70vw;
+      height: 70vw;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      transition: transform 0.2s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <img id="image" src="ADI.png" alt="Your Image">
+</div>
+
+<script>
+  window.addEventListener('deviceorientation', handleOrientation);
+
+  function handleOrientation(event) {
+    // ピッチとロールの値を取得
+    const pitch = event.beta || 0; // ピッチ
+    const roll = event.gamma || 0; // ロール
+
+    // 画像を移動させる
+    moveImage(pitch, roll);
+  }
+
+  function moveImage(pitch, roll) {
+    const container = document.getElementById('container');
+    const image = document.getElementById('image');
+
+    // ピッチとロールに基づいて画像の位置や回転を計算
+    const translateY = pitch * 2; // ピッチに応じて上下に移動
+    const rotateZ = roll * 2; // ロールに応じて回転
+
+    // CSSで変換を適用
+    image.style.transform = `translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
+  }
+</script>
+
+</body>
+</html>
