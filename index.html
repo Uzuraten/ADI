@@ -23,13 +23,13 @@
     }
 
     #image {
-      width: 150%; /* 16:9で120%に拡大表示 */
+      width: 160%; /* 16:9で120%に拡大表示 */
       height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
       object-fit: cover;
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) rotateX(90deg); /* ピッチを90度上にずらす */
+      transform: translate(-50%, -50%) rotateX(-90deg); /* ピッチを90度上にずらす */
       transition: transform 0.1s ease-in-out;
     }
   </style>
@@ -44,7 +44,7 @@
   window.addEventListener('deviceorientation', handleOrientation);
 
   function handleOrientation(event) {
-    const pitch = (event.beta || 0) + 90; /* ピッチを90度上にずらす */
+    const pitch = (event.beta || 0) - 90; /* ピッチを90度上にずらす */
     const roll = event.gamma || 0;
 
     moveImage(pitch, roll);
@@ -53,7 +53,7 @@
   function moveImage(pitch, roll) {
     const image = document.getElementById('image');
 
-    const translateY = pitch * 2;
+    const translateY = pitch * 5;
     const rotateZ = roll * -1;
 
     // CSSで変換を適用
