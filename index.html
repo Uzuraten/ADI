@@ -29,8 +29,8 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) translateY(0) rotateZ(0); /* 画像を中央揃え */
-      transition: transform 0.1s ease-in-out;
+      transform: translate(-50%, -50%); /* 画像を中央揃え */
+      transition: transform 0.2s ease-in-out;
     }
 
     #adjustButton {
@@ -50,7 +50,7 @@
 
 <div id="container">
   <img id="image" src="ADI.png" alt="Your Image">
-  <button id="adjustButton" onclick="adjustPitch()">Adjust Pitch</button>
+  <button id="adjustButton" onclick="resetPitch()">Reset Pitch</button>
 </div>
 
 <script>
@@ -70,15 +70,16 @@
 
     const translateY = pitch * 10;
     const rotateZ = roll * -1;
+    const centerX = image.clientWidth / 2; // 画像の左右中央位置
 
     // CSSで変換を適用
-    image.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
+    image.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg) rotate(${rotateZ}deg)`;
   }
 
-  function adjustPitch() {
+  function resetPitch() {
     const image = document.getElementById('image');
+    image.style.transform = `translate(-50%, -50%) rotate(0deg)`;
     initialPitch = (window.orientation === 0) ? 0 : 90;
-    image.style.transform = `translate(-50%, -50%) translateY(0) rotateZ(0)`;
   }
 </script>
 
