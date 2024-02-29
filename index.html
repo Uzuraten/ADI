@@ -15,8 +15,8 @@
     }
 
     #container {
-      width: 70vmin;
-      height: 70vmin;
+      width: 80vmin;
+      height: 80vmin;
       overflow: hidden;
       position: relative;
       border-radius: 15px; /* 角を丸めて窓らしさを増す */
@@ -29,7 +29,7 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%); /* 画像を中央揃え */
+      transform: translate(-50%, -50%) rotateX(90deg); /* ピッチを90度上にずらす */
       transition: transform 0.1s ease-in-out;
     }
   </style>
@@ -44,7 +44,7 @@
   window.addEventListener('deviceorientation', handleOrientation);
 
   function handleOrientation(event) {
-    const pitch = event.beta || 0;
+    const pitch = (event.beta || 0) + 90; /* ピッチを90度上にずらす */
     const roll = event.gamma || 0;
 
     moveImage(pitch, roll);
@@ -53,7 +53,7 @@
   function moveImage(pitch, roll) {
     const image = document.getElementById('image');
 
-    const translateY = pitch * 5;
+    const translateY = pitch * 2;
     const rotateZ = roll * -1;
 
     // CSSで変換を適用
