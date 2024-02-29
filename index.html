@@ -12,6 +12,8 @@
       height: 100vh;
       overflow: hidden;
       background-color: black; /* 背景色を黒に設定 */
+      color: white; /* 文字を白に設定 */
+      font-family: Arial, sans-serif; /* フォントを指定 */
     }
 
     #container {
@@ -23,26 +25,20 @@
     }
 
     #image {
-      width: 180%; /* 16:9で120%に拡大表示 */
+      width: 180%; /* 16:9で180%に拡大表示 */
       height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
       object-fit: cover;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%); /* 画像を中央揃え */
-      transition: transform 0.2s ease-in-out;
+      transition: transform 0.1s ease-in-out;
     }
 
-    #adjustButton {
+    #orientationValues {
       position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 10px;
-      border: none;
-      background-color: white;
-      border-radius: 10px;
-      cursor: pointer;
+      top: 10px;
+      left: 10px;
     }
   </style>
 </head>
@@ -50,19 +46,21 @@
 
 <div id="container">
   <img id="image" src="ADI.png" alt="Your Image">
-  <button id="adjustButton" onclick="resetPitch()">Reset Pitch</button>
 </div>
 
-<script>
-  let initialPitch = 0; // 初期のピッチ値を保存する変数
+<div id="orientationValues">Pitch: 0, Roll: 0</div>
 
+<script>
   window.addEventListener('deviceorientation', handleOrientation);
 
   function handleOrientation(event) {
     const pitch = event.beta || 0;
     const roll = event.gamma || 0;
 
-    moveImage(pitch - initialPitch, roll);
+    moveImage(pitch, roll);
+    
+    // 表示されるピッチとロールの値を更新
+    document.getElementById('orientationValues').textContent = `Pitch: ${pitch.toFixed(2)}, Roll: ${roll.toFixed(2)}`;
   }
 
   function moveImage(pitch, roll) {
@@ -70,16 +68,9 @@
 
     const translateY = pitch * 10;
     const rotateZ = roll * -1;
-    const centerX = image.clientWidth / 2; // 画像の左右中央位置
 
     // CSSで変換を適用
-    image.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg) rotate(${rotateZ}deg)`;
-  }
-
-  function resetPitch() {
-    const image = document.getElementById('image');
-    image.style.transform = `translate(-50%, -50%) rotate(0deg)`;
-    initialPitch = (window.orientation === 0) ? 0 : 90;
+    image.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
   }
 </script>
 
