@@ -24,15 +24,18 @@
       border-radius: 15px; /* 角を丸めて窓らしさを増す */
     }
 
-    #image {
+    #image, #transparentImage {
       width: 180%; /* 16:9で180%に拡大表示 */
       height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
       object-fit: cover;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%); /* 画像を中央揃え */
       transition: transform 0.1s ease-in-out;
+    }
+
+    #transparentImage {
+      opacity: 0.7; /* 透過度を指定 */
+      top: 30%; /* 透過画像の上からの位置 */
+      left: 20%; /* 透過画像の左からの位置 */
     }
 
     #orientationValues {
@@ -46,6 +49,7 @@
 
 <div id="container">
   <img id="image" src="ADI.png" alt="Your Image">
+  <img id="transparentImage" src="ADI_2.1.png" alt="Transparent Image">
 </div>
 
 <div id="orientationValues">Pitch: 0, Roll: 0</div>
@@ -65,12 +69,14 @@
 
   function moveImage(pitch, roll) {
     const image = document.getElementById('image');
+    const transparentImage = document.getElementById('transparentImage');
 
     const translateY = pitch * 10;
     const rotateZ = roll * -1;
 
     // CSSで変換を適用
     image.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
+    transparentImage.style.transform = `translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
   }
 </script>
 
