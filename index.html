@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     #container {
-      width: 70vw;
-      height: 70vw;
+      width: 50vw;
+      height: 50vw;
       overflow: hidden;
       position: relative;
     }
@@ -44,7 +44,7 @@
 
     // ピッチとロールに基づいて画像の位置や回転を計算
     const translateY = pitch * 2; // ピッチに応じて上下に移動
-    const rotateZ = roll * 2; // ロールに応じて回転
+    const rotateZ = roll * 1; // ロールに応じて回転
 
     // CSSで変換を適用
     image.style.transform = `translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
