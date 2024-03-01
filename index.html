@@ -55,7 +55,7 @@
     }
 
     #image2 {
-      width: 80%; /* 16:9で180%に拡大表示 */
+      width: 100%; /* 16:9で180%に拡大表示 */
       height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
       object-fit: cover;
       position: absolute;
@@ -108,7 +108,7 @@
     const image = document.getElementById('image');
     const image2 = document.getElementById('image2');
 
-    const translateY = pitch * 10;
+    const translateY = pitch * 8;
     const rotateZ = roll * -1;
 
     // CSSで変換を適用
