@@ -170,11 +170,12 @@
    // transform-originを設定
     const transformOriginY1 = (4137.5 - translateY) / 8275 * 100;
     [image].forEach(element => {
-      element.style.transformOrigin = `50% ${transformOriginY1}%`;
+      // element.style.transformOrigin = `50% ${transformOriginY1}%`;
+      element.style.transformOrigin = `50% 40%`;
     });
     const transformOriginY2 = (731.4 - translateY) / 1462.8 * 100;
     [image2, image3].forEach(element => {
-      element.style.transformOrigin = `50% ${transformOriginY2}%`;
+      element.style.transformOrigin = `50% 40%`;
     });
   }
 </script>
