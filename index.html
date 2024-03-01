@@ -21,8 +21,8 @@
       height: 80vmin;
       overflow: hidden;
       position: relative;
-      border-radius: 15px; /* 角を丸めて窓らしさを増す */
-      z-index: 2;
+      border-radius: 15px;
+      z-index: 3;
     }
 
     #container2 {
@@ -31,13 +31,18 @@
       position: absolute;
       top: 0%;
       left: 0%;
-      z-index: 1;
+      z-index: 2;
     }
 
-    #image2 {
+    #container3 {
       width: 100%;
       height: 100%;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      z-index: 1;
     }
+    
     #image {
       width: 180%; /* 16:9で180%に拡大表示 */
       height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
@@ -48,19 +53,39 @@
       transform: translate(-50%, -50%); /* 画像を中央揃え */
       transition: transform 0.1s ease-in-out;
     }
+
+    #image2 {
+      width: 180%; /* 16:9で180%に拡大表示 */
+      height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
+      object-fit: cover;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* 画像を中央揃え */
+      transition: transform 0.1s ease-in-out;
+    }
+
+    #image3 {
+      width: 100%;
+      height: 100%;
+    }
     
     #orientationValues {
       position: absolute;
       top: 10px;
       left: 10px;
     }
+    
   </style>
 </head>
 <body>
 <div id="container">
-  <img id="image" src="ADI.png" alt="Your Image">
+  <img id="image" src="ADI_1.1.png" alt="Your Image">
   <div id="container2">
-    <img id="image2" src="ADI_2.1.png" alt="Your Image">
+    <img id="image2" src="ADI_1.2.png" alt="Your Image">
+    <div id="container3">
+      <img id="image3" src="ADI_2.1.png" alt="Your Image">
+    </div>
   </div>
 </div>
 
@@ -81,12 +106,14 @@
 
   function moveImage(pitch, roll) {
     const image = document.getElementById('image');
+    const image2 = document.getElementById('image2');
 
     const translateY = pitch * 10;
     const rotateZ = roll * -1;
 
     // CSSで変換を適用
     image.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
+    image2.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
   }
 </script>
 
