@@ -61,6 +61,7 @@
       position: absolute;
       top: 50%;
       left: 50%;
+      clip-path: url(#clipPath); /* clip-pathを使用して指定したパスで画像を切り抜く */
       transform: translate(-50%, -50%); /* 画像を中央揃え */
       transition: transform 0.1s ease-in-out;
     }
@@ -88,6 +89,15 @@
     </div>
   </div>
 </div>
+
+<svg height="0" width="0" style="position:absolute;visibility:hidden;">
+  <defs>
+    <!-- Clip path definition using the path data from your SVG -->
+    <clipPath id="clipPath">
+      <path d="M 100,50 A 50,50 0 0 1 50,100 50,50 0 0 1 0,50 50,50 0 0 1 50,0 50,50 0 0 1 100,50 Z M 0,50 h 100 v 50 H 0 Z" />
+    </clipPath>
+  </defs>
+</svg>
 
 <div id="orientationValues">Pitch: 0, Roll: 0</div>
 
