@@ -168,9 +168,13 @@
     image5.style.transform = `translate(-50%, -50%) translateY(0px) rotateZ(${rotateZ}deg)`;
     
    // transform-originを設定
-    const transformOriginY = 50 - translateY / 2; // translateYの半分だけ引いている
-    [image, image2, image3].forEach(element => {
-      element.style.transformOrigin = `50% ${transformOriginY}%`;
+    const transformOriginY1 = (4137.5 - translateY) / 8275 * 100;
+    [image].forEach(element => {
+      element.style.transformOrigin = `50% ${transformOriginY1}%`;
+    });
+    const transformOriginY2 = (731.4 - translateY) / 1462.8 * 100;
+    [image2, image3].forEach(element => {
+      element.style.transformOrigin = `50% ${transformOriginY2}%`;
     });
   }
 </script>
