@@ -107,11 +107,11 @@
       height: 100%;
       object-fit: cover;
       position: absolute;
-      top: 160%;
+      top: 100%;
       left: 50%;
       transform: translate(-50%, -50%); /* 画像を中央揃え */
       transition: transform 0.1s ease-in-out;
-      clip-path: circle(50%);
+/*       clip-path: circle(50%); */
     }
     
     #orientationValues {
@@ -138,9 +138,8 @@
     <img id="image5" src="ADI_3.1.png" alt="Your Image">
   </div>
 </div>
-
-<div id="orientationValues">Pitch: 0, Roll: 0</div>
 <img id="image6" src="ADI_4.png" alt="Your Image">
+<div id="orientationValues">Pitch: 0, Roll: 0</div>
 
 <script>
   window.addEventListener('deviceorientation', handleOrientation);
