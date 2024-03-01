@@ -32,8 +32,6 @@
       top: 0%;
       left: 0%;
       z-index: 2;
-      clip-path: polygon(0 10%, 100% 10%, 100% 100%, 0 100%);
-      clip-path: circle(45%);
     }
 
     #container3 {
@@ -65,6 +63,21 @@
       left: 50%;
       transform: translate(-50%, -50%); /* 画像を中央揃え */
       transition: transform 0.1s ease-in-out;
+      clip-path: polygon(10% 50%, 90% 50%, 90% 100%, 10% 100%);
+/*       clip-path: circle(40%); */
+    }
+
+    #image4 {
+      width: 60%; /* 16:9で180%に拡大表示 */
+      height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
+      object-fit: cover;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* 画像を中央揃え */
+      transition: transform 0.1s ease-in-out;
+/*       clip-path: polygon(0 10%, 100% 10%, 100% 100%, 0 100%); */
+      clip-path: circle(40%);
     }
 
     #image3 {
@@ -85,6 +98,7 @@
   <img id="image" src="ADI_1.1.png" alt="Your Image">
   <div id="container2">
     <img id="image2" src="ADI_1.2.png" alt="Your Image">
+    <img id="image4" src="ADI_1.2.png" alt="Your Image">
   </div>
   <div id="container3">
     <img id="image3" src="ADI_2.1.png" alt="Your Image">
@@ -109,6 +123,7 @@
   function moveImage(pitch, roll) {
     const image = document.getElementById('image');
     const image2 = document.getElementById('image2');
+    const image4 = document.getElementById('image4');
 
     const translateY = pitch * 13;
     const rotateZ = roll * -1;
@@ -116,6 +131,7 @@
     // CSSで変換を適用
     image.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
     image2.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
+    image4.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
   }
 </script>
 
