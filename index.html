@@ -22,6 +22,16 @@
       overflow: hidden;
       position: relative;
       border-radius: 15px; /* 角を丸めて窓らしさを増す */
+      z-index: 2;
+    }
+
+    #container2 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      z-index: 1;
     }
 
     #image2 {
@@ -49,7 +59,9 @@
 <body>
 <div id="container">
   <img id="image" src="ADI.png" alt="Your Image">
-  <img id="image2" src="ADI_2.1.png" alt="Your Image">
+  <div id="container2">
+    <img id="image2" src="ADI_2.1.png" alt="Your Image">
+  </div>
 </div>
 
 <div id="orientationValues">Pitch: 0, Roll: 0</div>
