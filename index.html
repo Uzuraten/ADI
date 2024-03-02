@@ -63,15 +63,6 @@
       left: 0%;
       z-index: 1;
     }
-
-    #container6 {
-      width: 120vmin;
-      height: 120vmin;
-      overflow: hidden;
-      position: absolute;
-      top: 117.5%;
-      left: 50%;
-    }
     
     #image {
       width: 300%; /* 16:9で180%に拡大表示 */
@@ -119,8 +110,9 @@
       position: absolute;
       top: 50%;
       left: 50%;
+      overflow: hidden;
       transform: translate(-50%, -50%); /* 画像を中央揃え */
-/*       transform-origin: 50% 50%; /* 回転中心を指定 */ */
+      transform-origin: 50% 50%; /* 回転中心を指定 */
       clip-path: circle(50%);
       transition: transform 0.1s ease-in-out;
     }
@@ -149,10 +141,9 @@
     <img id="image5" src="ADI_3.1.png" alt="Your Image">
   </div>
 </div>
-<div id="container5">
-  <img id="image6" src="ADI_4.png" alt="Your Image">
-</div>
+  
 <div id="orientationValues">Alpha: 0, Pitch: 0, Roll: 0</div>
+<img id="image6" src="ADI_4.png" alt="Your Image">
   
 <script>
   window.addEventListener('deviceorientation', handleOrientation);
