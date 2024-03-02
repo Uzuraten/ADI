@@ -121,7 +121,7 @@
       width: 5%;
       height: auto;
       position: absolute;
-      top: 88%;
+      top: 87.5%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
@@ -130,6 +130,14 @@
       position: absolute;
       top: 10px;
       left: 10px;
+    }
+
+    #directionValues {
+      position: absolute;
+      top: 85%;
+      left: 50%;
+      font-size: 12px;
+      transform: translate(-50%, -50%);
     }
     
   </style>
@@ -151,7 +159,9 @@
   </div>
 </div>
   
-<div id="orientationValues">Alpha: 0, Pitch: 0, Roll: 0</div>
+<div id="orientationValues">direction: 0, Pitch: 0, Roll: 0</div>
+<div id="directionValues">0</div>
+
 <img id="image7" src="ADI_4.2.png" alt="Your Image">
 <img id="image6" src="ADI_4.png" alt="Your Image">
   
@@ -169,8 +179,10 @@
 
     moveImage(pitch, roll);
     checkBankAngle(roll);
+    const direction = 360.00 - alpha;
 
     document.getElementById('orientationValues').textContent = `Alpha: ${alpha.toFixed(2)}, Pitch: ${pitch.toFixed(2)}, Roll: ${roll.toFixed(2)}`;
+    document.getElementById('directionValues').textContent = `${direction.toFixed(0)}`;
     rotateImage6(alpha);
   }
 
@@ -197,10 +209,6 @@
   function rotateImage6(alpha) {
     const image6 = document.getElementById('image6');
     image6.style.transform = `translate(-50%, -50%) translateY(0px) rotateZ(${alpha}deg)`;
-
-    // [image6].forEach(element => {
-    // element.style.transformOrigin = `50% 50%`;
-    // });
   }
 
   function checkBankAngle(roll) {
