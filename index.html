@@ -158,7 +158,7 @@
     checkBankAngle(roll);
 
     document.getElementById('orientationValues').textContent = `Alpha: ${alpha.toFixed(2)}, Pitch: ${pitch.toFixed(2)}, Roll: ${roll.toFixed(2)}`;
-    //rotateImage6(alpha);
+    rotateImage6(alpha);
   }
 
   function moveImage(pitch, roll) {
@@ -188,7 +188,7 @@
 
   function checkBankAngle(roll) {
     // ±45度を超えた場合に音声を再生
-    if (Math.abs(roll) > 45) {
+    if (Math.abs(roll) > 40) {
       if (!isAudioPlaying) {
         // 音声が再生中でない場合、音声を再生
         audio.loop = true; // ループを有効にする
@@ -206,6 +206,5 @@
     }
   }
 </script>
-
 </body>
 </html>
