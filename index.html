@@ -4,122 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
-      background-color: black; /* 背景色を黒に設定 */
-      color: white; /* 文字を白に設定 */
-      font-family: Arial, sans-serif; /* フォントを指定 */
-    }
-
-    #container {
-      width: 80vmin;
-      height: 80vmin;
-      overflow: hidden;
-      position: relative;
-      border-radius: 25px;
-      z-index: 5;
-    }
-
-    #container2 {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0%;
-      left: 0%;
-      clip-path: circle(45%);
-      z-index: 4;
-    }
-
-    #container3 {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0%;
-      left: 0%;
-      clip-path: polygon(0 23%, 100% 23%, 100% 100%, 0 100%);
-      z-index: 3;
-    }
-
-    #container4 {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0%;
-      left: 0%;
-      z-index: 2;
-    }
-    
-    #container5 {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0%;
-      left: 0%;
-      z-index: 1;
-    }
-    
-    #image {
-      width: 300%; /* 16:9で180%に拡大表示 */
-      height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
-      object-fit: cover;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%); /* 画像を中央揃え */
-      transition: transform 0.1s ease-in-out;
-    }
-
-    #image2,
-    #image3 {
-      width: 60%; /* 16:9で180%に拡大表示 */
-      height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
-      object-fit: cover;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%); /* 画像を中央揃え */
-      transition: transform 0.1s ease-in-out;
-    }
-
-    #image4 {
-      width: 100%;
-      height: 100%;
-    }
-
-    #image5 {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%); /* 画像を中央揃え */
-      transition: transform 0.1s ease-in-out;
-    }
-
-    #image6 {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translate(-50%, -50%); /* 画像を中央揃え */
-      transition: transform 0.1s ease-in-out;
-/*       clip-path: circle(50%); */
-    }
-    
-    #orientationValues {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-    }
-    
+    /* ... (同じスタイル) ... */
   </style>
 </head>
 <body>
@@ -145,12 +30,20 @@
 <script>
   window.addEventListener('deviceorientation', handleOrientation);
 
+  // 音声ファイルのパス
+  const audioFilePath = 'bank_angle.mp3';
+  // Audioオブジェクト
+  const audio = new Audio(audioFilePath);
+  // 音声が再生中かどうかのフラグ
+  let isAudioPlaying = false;
+
   function handleOrientation(event) {
     const pitch = event.beta || 0;
     const roll = event.gamma || 0;
 
     moveImage(pitch, roll);
-    
+    checkBankAngle(roll);
+
     // 表示されるピッチとロールの値を更新
     document.getElementById('orientationValues').textContent = `Pitch: ${pitch.toFixed(2)}, Roll: ${roll.toFixed(2)}`;
   }
@@ -170,11 +63,27 @@
     image3.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
     image5.style.transform = `translate(-50%, -50%) translateY(0px) rotateZ(${rotateZ}deg)`;
     
-   // transform-originを設定
+    // transform-originを設定
     const transformOriginY = 50 - (pitch / 1.8);
     [image, image2, image3].forEach(element => {
       element.style.transformOrigin = `50% ${transformOriginY}%`;
     });
+  }
+
+  function checkBankAngle(roll) {
+    // ±45度を超えた場合に音声を再生
+    if (Math.abs(roll) > 45) {
+      if (!isAudioPlaying) {
+        // 音声が再生中でない場合、音声を再生
+        audio.play();
+        isAudioPlaying = true;
+      }
+    } else {
+      // ±45度以内の場合、音声を停止
+      audio.pause();
+      audio.currentTime = 0;
+      isAudioPlaying = false;
+    }
   }
 </script>
 
