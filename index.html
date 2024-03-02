@@ -141,19 +141,12 @@
 
 <div id="orientationValues">Pitch: 0, Roll: 0</div>
 
-<button id="playButton">Play Bank Angle</button>
-
 <script>
   window.addEventListener('deviceorientation', handleOrientation);
 
   const audioFilePath = 'bank_angle.mp3';
   const audio = new Audio(audioFilePath);
   let isAudioPlaying = false;
-
-  // ボタンクリックで音声再生
-  document.getElementById('playButton').addEventListener('click', () => {
-    playAudio();
-  });
 
   function handleOrientation(event) {
     const pitch = event.beta || 0;
@@ -190,9 +183,6 @@
       if (!isAudioPlaying) {
         playAudio();
         isAudioPlaying = true;
-        
-        // メッセージを表示
-        alert('Bank angle exceeded 45 degrees!');
       }
     } else {
       stopAudio();
@@ -200,14 +190,6 @@
     }
   }
 
-  function playAudio() {
-    audio.play();
-  }
-
-  function stopAudio() {
-    audio.pause();
-    audio.currentTime = 0;
-  }
 </script>
 
 </body>
