@@ -148,11 +148,6 @@
   const audio = new Audio(audioFilePath);
   let isAudioPlaying = false;
 
-  // ボタンクリックで音声再生
-  document.getElementById('playButton').addEventListener('click', () => {
-    playAudio();
-  });
-
   function handleOrientation(event) {
     const pitch = event.beta || 0;
     const roll = event.gamma || 0;
@@ -193,15 +188,6 @@
       stopAudio();
       isAudioPlaying = false;
     }
-  }
-
-  function playAudio() {
-    audio.play();
-  }
-
-  function stopAudio() {
-    audio.pause();
-    audio.currentTime = 0;
   }
 </script>
 
