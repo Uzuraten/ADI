@@ -144,11 +144,8 @@
 <script>
   window.addEventListener('deviceorientation', handleOrientation);
 
-  // 音声ファイルのパス
   const audioFilePath = 'bank_angle.mp3';
-  // Audioオブジェクト
   const audio = new Audio(audioFilePath);
-  // 音声が再生中かどうかのフラグ
   let isAudioPlaying = false;
 
   function handleOrientation(event) {
@@ -158,7 +155,6 @@
     moveImage(pitch, roll);
     checkBankAngle(roll);
 
-    // 表示されるピッチとロールの値を更新
     document.getElementById('orientationValues').textContent = `Pitch: ${pitch.toFixed(2)}, Roll: ${roll.toFixed(2)}`;
   }
 
@@ -171,13 +167,11 @@
     const translateY = pitch * 13;
     const rotateZ = roll * -1;
 
-    // CSSで変換を適用
     image.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
     image2.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
     image3.style.transform = `translate(-50%, -50%) translateY(${translateY}px) rotateZ(${rotateZ}deg)`;
     image5.style.transform = `translate(-50%, -50%) translateY(0px) rotateZ(${rotateZ}deg)`;
-    
-    // transform-originを設定
+
     const transformOriginY = 50 - (pitch / 1.8);
     [image, image2, image3].forEach(element => {
       element.style.transformOrigin = `50% ${transformOriginY}%`;
@@ -185,18 +179,17 @@
   }
 
   function checkBankAngle(roll) {
-    // ±45度を超えた場合に音声を再生
     if (Math.abs(roll) > 45) {
       if (!isAudioPlaying) {
-        // 音声が再生中でない場合、音声を再生
         audio.play();
         isAudioPlaying = true;
       }
     } else {
-      // ±45度以内の場合、音声を停止
-      audio.pause();
-      audio.currentTime = 0;
-      isAudioPlaying = false;
+      if (isAudioPlaying) {
+        audio.pause();
+        audio.currentTime = 0;
+        isAudioPlaying = false;
+      }
     }
   }
 </script>
