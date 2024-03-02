@@ -187,14 +187,13 @@
   function checkBankAngle(roll) {
     // ±45度を超えた場合に音声を再生
     if (Math.abs(roll) > 45) {
-      alert('Bank angle exceeded 45 degrees!');
       if (!isAudioPlaying) {
         // 音声が再生中でない場合、音声を再生
         audio.play();
         isAudioPlaying = true;
+        alert('Bank angle exceeded 45 degrees!');
       }
     } else {
-      alert('Bank is normal');
       // ±45度以内の場合、音声を停止
       audio.pause();
       audio.currentTime = 0;
