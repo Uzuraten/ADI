@@ -154,7 +154,8 @@
 
     moveImage(pitch, roll);
     checkBankAngle(roll);
-
+    
+    // 表示されるピッチとロールの値を更新
     document.getElementById('orientationValues').textContent = `Pitch: ${pitch.toFixed(2)}, Roll: ${roll.toFixed(2)}`;
   }
 
@@ -189,6 +190,7 @@
       isAudioPlaying = false;
     }
   }
+  
 </script>
 
 </body>
