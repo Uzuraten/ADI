@@ -179,13 +179,18 @@
   }
 
   function checkBankAngle(roll) {
+    // ±45度を超えた場合に音声を再生
     if (Math.abs(roll) > 45) {
       if (!isAudioPlaying) {
+        // 音声が再生中でない場合、音声を再生
+        audio.loop = true; // ループを有効にする
         audio.play();
         isAudioPlaying = true;
       }
     } else {
       if (isAudioPlaying) {
+        // ±45度以内の場合、音声を停止
+        audio.loop = false; // ループを無効にする
         audio.pause();
         audio.currentTime = 0;
         isAudioPlaying = false;
