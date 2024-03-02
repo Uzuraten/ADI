@@ -111,6 +111,7 @@
       top: 117.5%;
       left: 50%;
       transform: translate(-50%, -50%); /* 画像を中央揃え */
+      transform-origin: 50% 117.5%; /* 回転中心を指定 */
       transition: transform 0.1s ease-in-out;
     }
     
@@ -185,9 +186,9 @@
     const image6 = document.getElementById('image6');
     image6.style.transform = `translate(-50%, -50%) rotateZ(${alpha}deg)`;
 
-    [image6].forEach(element => {
-    element.style.transformOrigin = `50% 50%`;
-    });
+    // [image6].forEach(element => {
+    // element.style.transformOrigin = `50% 117.5%`;
+    // });
   }
 
   function checkBankAngle(roll) {
