@@ -186,11 +186,11 @@
 
   function rotateImage6(alpha) {
     const image6 = document.getElementById('image6');
-    image6.style.transform = `translate(-50%, -50%) rotateZ(${alpha}deg)`;
+    image6.style.transform = `translate(-50%, -50%) translateY(0px) rotateZ(${alpha}deg)`;
 
-    [image6].forEach(element => {
-    element.style.transformOrigin = `50% 50%`;
-    });
+    // [image6].forEach(element => {
+    // element.style.transformOrigin = `50% 50%`;
+    // });
   }
 
   function checkBankAngle(roll) {
