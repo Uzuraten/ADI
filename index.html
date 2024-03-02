@@ -177,13 +177,17 @@
 
     const transformOriginY = 50 - (pitch / 1.8);
     [image, image2, image3].forEach(element => {
-      element.style.transformOrigin = `50% ${transformOriginY}%`;
+    element.style.transformOrigin = `50% ${transformOriginY}%`;
     });
   }
 
   function rotateImage6(alpha) {
     const image6 = document.getElementById('image6');
     image6.style.transform = `translate(-50%, -50%) rotateZ(${alpha}deg)`;
+
+    [image6].forEach(element => {
+    element.style.transformOrigin = `50% 50%`;
+    });
   }
 
   function checkBankAngle(roll) {
